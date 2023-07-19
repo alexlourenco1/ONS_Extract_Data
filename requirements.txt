@@ -1,0 +1,12 @@
+pendulum
+pandas
+pyodbc
+# os
+datetime
+# time
+pathlib
+datetime
+sqlalchemy
+schedule
+xlrd
+# from sqlalchemy import create_engine
