@@ -1,0 +1,3 @@
+[submodule "Infrastructure/Postgre"]
+	path = Infrastructure/Postgre
+	url = https://bitbucket.org/focuspreco/postgresql.git

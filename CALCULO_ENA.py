@@ -91,7 +91,7 @@ def prod() -> list:
     query = f"SELECT * FROM ENA.PRODUTIBILIDADE_POSTOS;"
     df = pd.read_sql(query, eng)
     return df
-
+# print(prod()[prod()['BACIA']=='Grande'])
 def acomph() -> list:
     acomph = caminho_acomph()[0]
     lista_bacias = ['Grande', 'Paranaíba', 'Tietê', 'Paranapanema', 'Paraná', 'Iguaçu', 'Uruguai', 'Jacui', 'Outras Sul', 'Paraguai', 'Paraíba do Sul', 'Doce', 'Outras Sudeste', 'São Francisco',  'Outras Nordeste', 'Tocantins','Amazonas', 'Araguari']                                                
@@ -187,16 +187,25 @@ def acomph() -> list:
     df_bacia_paraguacu = pd.read_excel(io = acomph, sheet_name = 'Outras Nordeste' , header = None,  usecols= 'AG', skiprows=(34), nrows = 1 )
     lista_paraguacu = df_bacia_paraguacu.values
     
-    return lista_grande, lista_paranaiba, lista_tiete, lista_paranapanema, lista_alto_parana, lista_baixo_parana,  lista_iguacu, lista_uruguai, lista_jacui, lista_paraguai, lista_paraiba_do_sul, lista_doce, lista_sao_francisco_se, lista_araguari,  lista_mucuri, lista_itabapoana, lista_jequitinhonha_se, lista_jequitinhonha_ne, lista_tocantins_n, lista_tocantins_se, lista_amazonas_se, lista_amazonas_n, lista_paranapanema_s, lista_sao_francisco_ne, lista_araguari, lista_capivari, lista_itajai, lista_xingu, lista_parnaiba, lista_paraguacu 
-
+    return (lista_grande, lista_paranaiba, lista_tiete, lista_paranapanema, lista_alto_parana, lista_baixo_parana,
+            lista_iguacu, lista_uruguai, lista_jacui, lista_paraguai, lista_paraiba_do_sul, lista_doce,
+            lista_sao_francisco_se, lista_araguari,  lista_mucuri, lista_itabapoana, lista_jequitinhonha_se,
+            lista_jequitinhonha_ne, lista_tocantins_n, lista_tocantins_se, lista_amazonas_se, lista_amazonas_n,
+            lista_paranapanema_s, lista_sao_francisco_ne, lista_araguari, lista_capivari, lista_itajai, lista_xingu,
+            lista_parnaiba, lista_paraguacu)
+print(acomph()[7][0])
 def produtibilidade():
-    lista_bacias = ['GRANDE', 'PARANAIBA', 'TIETÊ', 'PARANAPANEMA ', 'Paraná', 'IGUAÇU', 'URUGUAI', 'JACUÍ', 'OUTRAS_SUL', 'PARAGUAI', 'PARAIBA DO SUL', 'DOCE', 'ITABAPOANA', 'SÃO FRANCISCO (SE)', 'SÃO FRANCISCO (NE)',  'JEQUITINHONHA (NE)', 'TOCANTINS (SE)','AMAZONAS (SE)', 'ARAGUARI', 'MUCURI', 'PARANAPANEMA (S)', 'SÃO FRANCISCO (NE)', 'JEQUITINHONHA (SE)', 'TOCANTINS (N)', 'ARAGUARI']
+    # lista_bacias = ['GRANDE', 'PARANAIBA', 'TIETÊ', 'PARANAPANEMA ', 'Paraná', 'IGUAÇU', 'URUGUAI', 'JACUÍ', 'OUTRAS_SUL', 'PARAGUAI', 'PARAIBA DO SUL', 'DOCE', 'ITABAPOANA', 'SÃO FRANCISCO (SE)', 'SÃO FRANCISCO (NE)',  'JEQUITINHONHA (NE)', 'TOCANTINS (SE)','AMAZONAS (SE)', 'ARAGUARI', 'MUCURI', 'PARANAPANEMA (S)', 'SÃO FRANCISCO (NE)', 'JEQUITINHONHA (SE)', 'TOCANTINS (N)', 'ARAGUARI']
+    lista_bacias = ['GRANDE', 'PARANAIBA', 'TIETÊ', 'PARANAPANEMA', 'Paraná', 'IGUAÇU', 'URUGUAI', 'JACUÍ',
+                    'OUTRAS_SUL', 'PARAGUAI', 'PARAIBA DO SUL', 'DOCE', 'ITABAPOANA', 'SÃO FRANCISCO (SE)',
+                    'SÃO FRANCISCO (NE)', 'JEQUITINHONHA (NE)', 'TOCANTINS (SE)', 'AMAZONAS (SE)', 'ARAGUARI', 'MUCURI',
+                    'PARANAPANEMA (S)', 'SÃO FRANCISCO (NE)', 'JEQUITINHONHA (SE)', 'TOCANTINS (N)', 'ARAGUARI']
     df = prod()
-    lista_grande = df[df['BACIA'] == lista_bacias[0:1][0]]['PRODUTIBILIDADE'].values
-    lista_paranaiba = df[df['BACIA'] == lista_bacias[1:2][0]]['PRODUTIBILIDADE'].values
-    lista_tiete = df[df['BACIA'] == lista_bacias[2:3][0]]['PRODUTIBILIDADE'].values
+    lista_grande = df[df['BACIA'] == lista_bacias[0]]['PRODUTIBILIDADE'].values
+    lista_paranaiba = df[df['BACIA'] == lista_bacias[1]]['PRODUTIBILIDADE'].values
+    lista_tiete = df[df['BACIA'] == lista_bacias[2]]['PRODUTIBILIDADE'].values
     lista_paranapanema = df[df['BACIA'] == lista_bacias[3]]['PRODUTIBILIDADE'].values
-    lista_paranapanema_s = df[df['BACIA'] == lista_bacias[22]]['PRODUTIBILIDADE'].values
+    lista_paranapanema_s = df[df['BACIA'] == lista_bacias[20]]['PRODUTIBILIDADE'].values
     lista_parana = df[df['BACIA'] == lista_bacias[4]]['PRODUTIBILIDADE'].values
     lista_iguacu = df[df['BACIA'] == lista_bacias[5]]['PRODUTIBILIDADE'].values
     lista_uruguai = df[df['BACIA'] == lista_bacias[6]]['PRODUTIBILIDADE'].values
@@ -223,9 +232,12 @@ def produtibilidade():
     lista_xingu = df[df['BACIA'] == 'XINGU']['PRODUTIBILIDADE'].values
     lista_parnaiba = df[df['BACIA'] == 'PARNAÍBA']['PRODUTIBILIDADE'].values
     lista_paraguacu = df[df['BACIA'] == 'PARAGUAÇU']['PRODUTIBILIDADE'].values
-    
-    return lista_grande, lista_paranaiba, lista_tiete, lista_paranapanema, lista_parana, lista_iguacu, lista_uruguai, lista_jacui, lista_outras_sul, lista_paraguai, lista_paraiba_do_sul, lista_doce, lista_itabapoana, lista_sao_francisco_se, lista_jequitinhonha_ne, lista_tocantins_se, lista_amazonas_se, lista_araguari, lista_mucuri, lista_sao_francisco_ne, lista_jequitinhonha_se, lista_tocantins_n, lista_paranapanema_s, lista_araguari, lista_capivari, lista_itajai, lista_amazonas_n, lista_xingu, lista_parnaiba, lista_paraguacu
-
+    return (lista_grande, lista_paranaiba, lista_tiete, lista_paranapanema, lista_parana, lista_iguacu, lista_uruguai,
+           lista_jacui, lista_outras_sul, lista_paraguai, lista_paraiba_do_sul, lista_doce, lista_itabapoana,
+           lista_sao_francisco_se, lista_jequitinhonha_ne, lista_tocantins_se, lista_amazonas_se, lista_araguari,
+           lista_mucuri, lista_sao_francisco_ne, lista_jequitinhonha_se, lista_tocantins_n, lista_paranapanema_s,
+           lista_araguari, lista_capivari, lista_itajai, lista_amazonas_n, lista_xingu, lista_parnaiba, lista_paraguacu)
+print(produtibilidade()[6])
 def calculo():
     lista_acomph = acomph()
     prod = produtibilidade()
@@ -297,6 +309,7 @@ def calculo():
     uruguai = list()
     for i in range(1, 12):
                 uruguai.append(lista_acomph[7][0][i-1] * prod[6][i-1])
+                print((lista_acomph[7][0][i-1] * prod[6][i-1]))
     ena_uruguai = 0
     for i in uruguai: 
          ena_uruguai += i     
@@ -464,7 +477,8 @@ def calculo():
     sul = [ena_iguacu, ena_uruguai, ena_paranapanema_s, ena_jacui, ena_capivari, ena_itajai]
     norte = [ena_tocantins_n, ena_araguari, ena_amazonasn, ena_xingu]
     nordeste = [ena_sao_francisco_ne, ena_jequitinhonhane, ena_parnaiba, ena_paraguacu]
-    return sudeste, sul, norte, nordeste   
+    # return sudeste, sul, norte, nordeste
+    return sul
 
 def calculo_submercado():
     ''' Calculo por submercado'''
@@ -489,7 +503,7 @@ def calculo_submercado():
         
     return ena_se, ena_s, ena_ne, ena_n   
  
-print(calculo_submercado())
+# print(calculo_submercado())
 print(calculo())
 
 def SQL_ena_bacia(data, sudeste, sul, norte, nordeste):
