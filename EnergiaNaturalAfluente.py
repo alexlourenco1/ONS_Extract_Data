@@ -298,6 +298,7 @@ def inserir_ena(ref_date):
     nordeste=ena[ena['region']=='Nordeste']['ENA'].values
     SQL_base_ENA(data=data, indicador=indicador, seco=float(seco[0]), s=float(sul[0]), ne=float(nordeste[0]), n=float(norte[0]), sin=float(sin[0]))
 
-ref_date='2023-01-16'
+##Mudar data de referencia conforme necessidade, bater com a ultima data do banco.
+ref_date='2023-09-14'
 print('A data do Acomph é',ref_date)
 inserir_ena(ref_date)
