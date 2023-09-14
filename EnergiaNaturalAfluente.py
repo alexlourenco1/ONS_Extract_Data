@@ -245,13 +245,6 @@ def calculo_ena_acomph(inflow)-> pd.DataFrame:
             ena = produtib * inflow.loc[station_nat, :].values
             aux.append([region, ree, basin] + ena.tolist())
             index.append(station_nat)
-#
-#     for station_art in config['id_art']:
-#         if station_art in inflow.index:
-#             ena = produtib * inflow.loc[station_art, :].values
-#             aux.append([region, ree, basin] + ena.tolist())
-#             index.append(station_art)
-# print(aux)
  df = pd.DataFrame(data=aux, columns=['region', 'ree', 'basin'] + list(inflow.columns), index=index)
  df = df.sort_index()
  df = df.round(decimals=2)
@@ -305,6 +298,6 @@ def inserir_ena(ref_date):
     nordeste=ena[ena['region']=='Nordeste']['ENA'].values
     SQL_base_ENA(data=data, indicador=indicador, seco=float(seco[0]), s=float(sul[0]), ne=float(nordeste[0]), n=float(norte[0]), sin=float(sin[0]))
 
-ref_date=date.today() - timedelta(days=1) #até o 6
+ref_date='2023-01-16'
 print('A data do Acomph é',ref_date)
 inserir_ena(ref_date)
