@@ -4,6 +4,7 @@ Created on Tue May 17 17:27:24 2022
 
 @author: alex.lourenco
 """
+#Importação das bibliotecas necessarias
 import pendulum
 import pandas as pd
 import pymssql
