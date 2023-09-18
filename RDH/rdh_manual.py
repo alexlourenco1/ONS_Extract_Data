@@ -127,6 +127,7 @@ def lista():
     lista = list(df[df[4] !=0].values)
     return lista
 
+#Essa função atualiza a RDH conforme data setada na Variavel 'data_rdh'
 def atualizar_rdh():
     rdh = lista()
     data_rdh =  datetime.datetime.strptime('2022-07-18', '%Y-%m-%d')
